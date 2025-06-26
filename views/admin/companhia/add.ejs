@@ -1,0 +1,25 @@
+<%- include('../../cabecalho.ejs')%>
+    
+
+
+    <div class="form-box">
+        
+            <h1>Companhia</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required><br>
+                
+                <label for="pais">Pais de origem</label>
+                <input type="text" id="pais" name="pais" required><br>
+                
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" name="foto" required><br>
+                
+                <button type="submit" class="form-btn">Adicionar Companhia</button>
+                <br></br>
+    <a href="/admin/Companhia/lst" class="form-btn">Cancelar</a>
+            </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<%- include('../../cabecalho.ejs')%>
+
+  
+
+    <div class="form-box">
+        
+
+
+            <h1>Editar Cotações</h1>
+            
+            <form action="" method="post">
+                <label for="origem">Origem</label>
+                
+                <select  class="form-select" id="aeroporto" name="aeroporto" required>
+                    <option value="x" disabled selected hidden>Selecione sua origem</option>
+                    <%Aeroportos.forEach(function(Aeroporto){%>
+                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
+                    <%})%>
+                
+                <label for="destino">Destino</label>
+                <select  class="form-select" id="destino" name="destino" required>
+                    <option value="x" disabled selected hidden>Selecione sua origem</option>
+                    <%Aeroportos.forEach(function(Aeroporto){%>
+                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
+                    <%})%>
+                
+                <label for="ida">Ida</label>
+                <input type="text" id="ida" name="ida" value="<%=Cotacao.ida%>" required><br>
+                
+                <label for="volta">volta</label>
+                <input type="text" id="volta" name="volta" value="<%=Cotacao.volta%>" required><br>
+                
+                <label for="nome">Nome</label>
+                <select  class="form-select" id="usuario" name="usuario" required>
+                    <option value="x" disabled selected hidden>Selecione seu nome</option>
+                    <%Usuarios.forEach(function(Usuario){%>
+                    <option value="<%=Usuario.id%>"><%=Usuario.nome%></option>
+                    <%})%>
+                
+                <label for="contato">Contato</label>
+                <input type="text" id="contato" name="contato" value="<%=Cotacao.contato%>" required><br>
+
+                <label for="status">Status</label>
+                <input type="text" id="status" name="status" value="<%=Cotacao.status%>" required><br>
+
+                <button type="submit" class="form-btn">Editar</button>
+                <br></br>
+    <a href="/admin/cotacao/lst" class="form-btn">Cancelar</a>
+            </div>
+            </form>
+        
+            </form>
+            </div>
+</body>
+</html>

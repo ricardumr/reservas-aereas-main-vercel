@@ -1,0 +1,30 @@
+<%- include('../../cabecalho.ejs') %>
+
+<div class="form-box">
+    <h1>Editar Aeroporto</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <!-- ID oculto -->
+        <input type="hidden" name="id" value="<%= Aeroporto.id %>">
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" value="<%= Aeroporto.nome %>" required><br>
+
+        <label for="local">Localização</label>
+        <input type="text" id="local" name="local" value="<%= Aeroporto.local %>" required><br>
+
+        <!-- Foto atual (oculta e visível) -->
+        <input type="text" name="salvefoto" value="<%= Aeroporto.foto %>">
+        <img src="/arquivos/<%= Aeroporto.foto %>" style="max-width: 200px; display: block; margin: 10px 0;">
+
+        <label for="foto">Nova Foto (opcional)</label>
+        <input type="file" id="foto" name="foto"><br>
+
+        <button type="submit" class="form-btn">Editar</button>
+        <br><br>
+        <a href="/admin/aeroporto/lst" class="form-btn">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

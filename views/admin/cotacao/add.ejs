@@ -1,0 +1,85 @@
+<%- include('../../cabecalho.ejs')%>
+    
+
+
+    <div class="form-box">
+        
+            <h1>Cotação</h1>
+            <form action="" method="post">
+                <label for="origem">Origem</label>
+                <select  class="form-select" id="origem" name="origem" required>
+                    <option value="" disabled selected hidden>Selecione a origem</option>
+                    <%Aeroportos.forEach(function(Aeroporto){%>
+                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
+                    <%})%>
+
+</select>
+                
+                <label for="destino">Destino</label>
+                <select  class="form-select" id="destino" name="destino" required>
+                    <option value="" disabled selected hidden>Selecione a volta</option>
+                    <%Aeroportos.forEach(function(Aeroporto){%>
+                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
+                    <%})%>
+</select>
+                    <label for="ida">ida</label>
+                <input type="date" id="ida" name="ida" required><br>
+
+                <label for="volta">Volta</label>
+                    <input type="date" id="volta" name="volta" required><br>
+
+                    <div id="mensagemErro" style="color: red; margin-top: 10px;"></div>
+
+                    <script>
+                      const idaInput = document.getElementById('ida');
+                      const voltaInput = document.getElementById('volta');
+                      const mensagemErro = document.getElementById('mensagemErro');
+                    
+                      idaInput.addEventListener('change', () => {
+                        voltaInput.min = idaInput.value;
+                        if (voltaInput.value && voltaInput.value < idaInput.value) {
+                          mensagemErro.textContent = "A data de volta não pode ser antes da data de ida.";
+                          voltaInput.value = idaInput.value;
+                        } else {
+                          mensagemErro.textContent = "";
+                        }
+                      });
+                    
+                      voltaInput.addEventListener('change', () => {
+                        if (voltaInput.value < idaInput.value) {
+                          mensagemErro.textContent = "A data de volta deve ser igual ou posterior à data de ida.";
+                        } else {
+                          mensagemErro.textContent = "";
+                        }
+                      });
+                    </script>
+
+                </select>
+                <label for="nome">Nome</label>
+                <select  class="form-select" id="usuario" name="usuario" required>
+                    <option value="" disabled selected hidden>Selecione o usuário</option>
+                    <%Usuarios.forEach(function(Usuario){%>
+                    <option value="<%=Usuario.id%>"><%=Usuario.nome%></option>
+                    <%})%>
+                </select>                
+
+                <label for="contato">contato</label>
+                <input type="text" id="contato" name="contato" required><br>
+
+                <label for="status">Status</label>
+                <select  class="form-select" id="status" name="status" required>
+                    <option value="" disabled selected hidden>Selecione o status</option>
+                    <option value="Aberto">Aberto</option>
+                    <option value="Em andamento">Em atendimento</option>
+                    <option value="viagem confirmada">Viagem confirmada</option>
+                    <option value="viagem cancelada">Viagem cancelada</option>
+
+</select>
+<button type="submit" class="form-btn">Adicionar Cotação</button>
+<br></br>
+<a href="/admin/cotacao/lst" class="form-btn">Cancelar</a>
+            </form>
+        
+    </div>
+</body>
+</html>

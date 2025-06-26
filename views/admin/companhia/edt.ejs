@@ -1,0 +1,30 @@
+<%- include('../../cabecalho.ejs') %>
+
+<div class="form-box">
+    <h1>Editar Companhia</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <!-- ID oculto -->
+        <input type="hidden" name="id" value="<%= Companhia.id %>">
+
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" value="<%= Companhia.nome %>" required><br>
+
+        <label for="pais">País de origem</label>
+        <input type="text" id="pais" name="pais" value="<%= Companhia.pais %>" required><br>
+
+        <!-- Foto atual (oculta e visível) -->
+        <input type="hidden" name="salvefoto" value="<%= Companhia.foto %>">
+        <img src="/arquivos/<%= Companhia.foto %>" style="max-width: 200px; display: block; margin: 10px 0;">
+
+        <label for="foto">Nova Foto (opcional)</label>
+        <input type="file" id="foto" name="foto"><br>
+
+        <button type="submit" class="form-btn">Editar</button>
+        <br><br>
+        <a href="/admin/companhia/lst" class="form-btn">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

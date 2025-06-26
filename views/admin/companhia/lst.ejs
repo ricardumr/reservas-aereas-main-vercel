@@ -1,0 +1,47 @@
+<%- include('../../cabecalho.ejs')%>
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </head>
+
+
+    <div class="form-container">
+        <h1>Companhias</h1>
+        <a href="/admin/companhia/add" class="options-btn">Adicionar <i class="fa-solid fa-address-card"></i></a>
+        <div class="search-bar">
+        <input type="text" class="form-control" id="pesquisar" placeholder="Pesquisar" name="pesquisar">
+        <button type="submit" >Pesquisar</button>
+    </div>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>País de origem</th>
+                <th>Foto</th>
+                <th>Opções</th>
+            </tr>
+            <% Companhias.forEach(function(companhia) { %>
+                <tr>
+                    <td>
+                        <%=companhia.nome%>
+                    </td>
+                    <td>
+                        <%=companhia.pais%>
+                    </td>
+                    <td>
+                        <img class="foto" src="/arquivos/<%=companhia.foto%>"
+                        />
+                    </td>
+
+                    <td>
+                        <a href="/admin/companhia/edt/<%= companhia.id %>" class="options-btn">Editar <i
+                                class="fa-solid fa-pen-to-square"></i></a>
+
+                        <a href="/admin/companhia/del/<%= companhia.id %>" class="options-btn">Excluir <i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                <%})%>
+        </table>
+    </div>
+    </body>
+
+    </html>
