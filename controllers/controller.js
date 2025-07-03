@@ -264,13 +264,39 @@ export async function deletacotacao(req, res) {
     res.redirect('/admin/cotacao/lst')
 }
 export async function abreedtcotacao(req, res){
-    const resultado = await Cotacao.findById(req.params.id) 
+    const resultado = await Cotacao.findById(req.params.id).populate('origem destino usuario') 
     const cAeroporto= await Aeroporto.find({}).catch(function(err){console.log(err)}) 
     const cUsuario= await Usuario.find({}).catch(function(err){console.log(err)})    
     res.render('admin/cotacao/edt',{Cotacao:resultado, Aeroportos:cAeroporto, Usuarios:cUsuario})
 }
 export async function edtcotacao(req, res){
-    await Cotacao.findByIdAndUpdate(req.params.id, req.body)
+    var cOrigem=null;
+    if(req.body.origem!=null){
+        cOrigem=await Aeroporto.findById(req.body.origem)
+    }
+
+    var cDestino=null;
+    if(req.body.destino!=null){
+        cDestino=await Aeroporto.findById(req.body.destino)
+    }
+
+    var cUsuario=null;
+    if(req.body.usuario!=null){
+        cUsuario=await Usuario.findById(req.body.usuario)
+    }
+    console.log(cUsuario.nome)
+    await Cotacao.findByIdAndUpdate(
+        req.params.id,
+        {origem:cOrigem,
+        destino:cDestino,
+        ida:req.body.ida,
+        volta:req.body.volta,
+        usuario:cUsuario,
+        contato:req.body.contato,
+        status:req.body.status,
+        
+})
+    //await Cotacao.findByIdAndUpdate(req.params.id, req.body)
     res.redirect('/admin/cotacao/lst')
 } 
 

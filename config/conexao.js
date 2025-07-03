@@ -9,6 +9,7 @@ async function conectarDB() {
     } catch (error) {
         console.error("Erro ao conectar ao MongoDB:", error);
     }
+    
 }
 
 conectarDB();

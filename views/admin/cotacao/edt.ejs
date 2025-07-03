@@ -1,55 +1,77 @@
 <%- include('../../cabecalho.ejs')%>
 
-  
+
 
     <div class="form-box">
-        
 
 
-            <h1>Editar Cotações</h1>
-            
-            <form action="" method="post">
-                <label for="origem">Origem</label>
-                
-                <select  class="form-select" id="aeroporto" name="aeroporto" required>
-                    <option value="x" disabled selected hidden>Selecione sua origem</option>
-                    <%Aeroportos.forEach(function(Aeroporto){%>
-                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
+
+        <h1>Editar Cotações</h1>
+
+        <form action="" method="post">
+            <label for="origem">Origem</label>
+
+            <select class="form-select" id="origem" name="origem" required>
+
+                <%Aeroportos.forEach(function(Aeroporto){%>
+
+                    <option value="<%=Aeroporto.id%>" <%=Cotacao.origem.id==Aeroporto.id? "selected" :""%>>
+                        <%=Aeroporto.nome%>
+                    </option>
                     <%})%>
-                
-                <label for="destino">Destino</label>
-                <select  class="form-select" id="destino" name="destino" required>
-                    <option value="x" disabled selected hidden>Selecione sua origem</option>
-                    <%Aeroportos.forEach(function(Aeroporto){%>
-                    <option value="<%=Aeroporto.id%>"><%=Aeroporto.nome%></option>
-                    <%})%>
-                
-                <label for="ida">Ida</label>
-                <input type="text" id="ida" name="ida" value="<%=Cotacao.ida%>" required><br>
-                
-                <label for="volta">volta</label>
-                <input type="text" id="volta" name="volta" value="<%=Cotacao.volta%>" required><br>
-                
-                <label for="nome">Nome</label>
-                <select  class="form-select" id="usuario" name="usuario" required>
-                    <option value="x" disabled selected hidden>Selecione seu nome</option>
-                    <%Usuarios.forEach(function(Usuario){%>
-                    <option value="<%=Usuario.id%>"><%=Usuario.nome%></option>
-                    <%})%>
-                
-                <label for="contato">Contato</label>
-                <input type="text" id="contato" name="contato" value="<%=Cotacao.contato%>" required><br>
+            </select>
 
-                <label for="status">Status</label>
-                <input type="text" id="status" name="status" value="<%=Cotacao.status%>" required><br>
+            <label for="destino">Destino</label>
+            <select class="form-select" id="destino" name="destino" required>
 
-                <button type="submit" class="form-btn">Editar</button>
-                <br></br>
-    <a href="/admin/cotacao/lst" class="form-btn">Cancelar</a>
-            </div>
-            </form>
-        
-            </form>
-            </div>
-</body>
-</html>
+                <%Aeroportos.forEach(function(Aeroporto){%>
+                    <option value="<%=Aeroporto.id%>" <%=Cotacao.destino.id==Aeroporto.id? "selected" :""%>>
+                        <%=Aeroporto.nome%>
+                    </option>
+                    <%})%>
+            </select>
+
+            <label for="ida">Ida</label>
+            <input type="date" id="ida" name="ida" value="<%=Cotacao.ida%>" required><br>
+
+            <label for="volta">volta</label>
+            <input type="date" id="volta" name="volta" value="<%=Cotacao.volta%>" required><br>
+
+            <label for="nome">Nome</label>
+            <select class="form-select" id="usuario" name="usuario" required>
+
+                <%Usuarios.forEach(function(Usuario){%>
+                    <option value="<%=Usuario.id%>" <%=Cotacao.usuario.id==Usuario.id? "selected" :""%>>
+                        <%=Usuario.nome%>
+                    </option>
+                    <%})%>
+            </select>
+            <label for="contato">Contato</label>
+            <input type="text" id="contato" name="contato" value="<%= Cotacao.contato %>" required><br>
+
+
+            <label for="status">Status</label>
+            <select class="form-select" id="status" name="status" required>
+
+                <option value="Aberto" <%=Cotacao.status=="Aberto" ? "selected" :""%>>Aberto</option>
+                <option value="Em andamento" <%=Cotacao.status=="Em andamento" ? "selected" :""%>>Em atendimento
+                </option>
+                <option valeu="viagem confirmada" <%=Cotacao.status=="Viagem confirmada" ? "selected" :""%>>Viagem
+                    confirmada</option>
+                <option value="viagem cancelada" <%=Cotacao.status=="Viagem cancelada" ? "selected" :""%>>Viagem
+                    cancelada</option>
+
+            </select>
+
+            <button type="submit" class="form-btn">Editar</button>
+
+            <br></br>
+            <a href="/admin/cotacao/lst" class="form-btn">Cancelar</a>
+    </div>
+    </form>
+
+    </form>
+    </div>
+    </body>
+
+    </html>
