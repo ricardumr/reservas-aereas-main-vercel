@@ -296,7 +296,7 @@ export async function edtcotacao(req, res){
         status:req.body.status,
         
 })
-    //await Cotacao.findByIdAndUpdate(req.params.id, req.body)
+    //await Cotacao.findByIdAndUpdate(req.params.id, req.body)teste
     res.redirect('/admin/cotacao/lst')
 } 
 
